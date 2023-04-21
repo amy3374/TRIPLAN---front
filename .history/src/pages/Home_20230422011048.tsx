@@ -3,7 +3,7 @@ import Logo from "../components/ui/Logo";
 
 export default function Home() {
   return (
-    <div className="flex justify-center items-center flex-col h-[90%]">
+    <div className="flex justify-center items-center flex-col h-2/4">
       <Logo />
       <form className="flex flex-col justify-center  w-[20em] md:w-[30em] lg:w-[35em]  gap-3 mt-7">
         <input
