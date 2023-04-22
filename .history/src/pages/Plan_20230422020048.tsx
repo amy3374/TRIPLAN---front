@@ -9,7 +9,7 @@ export default function Plan() {
         <PlanBox />
         <BaggageBox />
       </div>
-      <button className="bg-green p-2 text-white rounded-lg m-2 w-14 self-end">
+      <button className="bg-green p-2 text-white rounded-lg m-2 w-14 items-end">
         저장
       </button>
     </section>
