@@ -5,14 +5,12 @@ type BaggageListProps = {
   list: BaggageitemProps[];
 };
 
-const BaggageList: React.FC<BaggageListProps> = ({ list }) => {
+export default function BaggageList({ list }: BaggageListProps) {
   return (
-    <ul>
+    <ul className="m-1">
       {list.map((item) => (
         <BaggageItem {...item} key={item.id} />
       ))}
     </ul>
   );
-};
-
-export default BaggageList;
+}

@@ -1,0 +1,22 @@
+import React from "react";
+import { FaTrashAlt } from "react-icons/fa";
+
+export type BaggageitemProps = {
+  item: BaggageItem;
+};
+
+type BaggageItem = {
+  item: string;
+  id: string;
+};
+
+export default function BaggageItem({ item, id }: BaggageitemProps) {
+  return (
+    <li className="flex items-center justify-between m-1 p-1">
+      <p className="text-lg font-bold">{item}</p>
+      <button>
+        <FaTrashAlt />
+      </button>
+    </li>
+  );
+}
