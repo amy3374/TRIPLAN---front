@@ -8,6 +8,7 @@ import Home from "./pages/Home"
 import Plan from './pages/Plan';
 import MyPlan from './pages/MyPlan';
 import MyPlanDetail from './pages/MyPlanDetail';
+import Login from './pages/Login';
 
 const router = createBrowserRouter([
   {
@@ -32,6 +33,9 @@ const router = createBrowserRouter([
   path : "myplandetail",
   element: <MyPlanDetail />,
 
+},{
+  path : "login",
+  element: <Login />
 }]
   }
 ])
