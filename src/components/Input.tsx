@@ -5,10 +5,11 @@ import { v4 } from "uuid";
 
 interface inputProps {
   color: string;
-  onAdd: (input: ListItem) => void;
+  dayId?: string;
+  onAdd: (input: ListItem, dayId?: string) => void;
 }
 
-export default function Input({ color, onAdd }: inputProps) {
+export default function Input({ color, onAdd, dayId }: inputProps) {
   const [input, setInput] = useState<string>("");
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInput(e.target.value);
@@ -18,10 +19,10 @@ export default function Input({ color, onAdd }: inputProps) {
     if (input?.trim().length === 0) {
       return;
     }
-    onAdd({ id: v4(), item: input as string });
+    onAdd({ id: v4(), item: input as string }, dayId);
     setInput("");
   };
-  console.log(input);
+  // console.log(input);
 
   return (
     <form
