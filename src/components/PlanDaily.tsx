@@ -3,45 +3,38 @@ import { v4 } from "uuid";
 import Input from "./Input";
 import { ListItem } from "../pages/Plan";
 import PlanItem from "./PlanItem";
+import Time from "./Time";
 
 interface PlanDailyProps {
   day: number;
-  content: string;
+  content: any;
+  dayId: string;
+  onDelete: (id: string) => void;
+  onAdd: (newItem: ListItem, dayId?: string) => void;
 }
-export default function PlanDaily({ day, content }: PlanDailyProps) {
-  const makePlanList = (data: string): string[] => {
-    return data.split("-");
-  };
-
-  const [planData, setPlanData] = useState<ListItem[]>([]);
-
-  const handleAdd = (data: ListItem) => {
-    setPlanData((pre) => [...pre, data]);
-  };
-
-  const handleDelete = (id: string) => {
-    console.log(id);
-
-    setPlanData(planData.filter((item) => item.id !== id));
-  };
-
-  useEffect(() => {
-    const Data = makePlanList(content)
-      .slice(1)
-      .map((item) => {
-        return { item: item, id: v4() };
-      });
-    setPlanData(Data);
-  }, [content]);
-
+export default function PlanDaily({
+  day,
+  content,
+  dayId,
+  onDelete,
+  onAdd,
+}: PlanDailyProps) {
   return (
     <section className="p-2">
       <p className="text-xl font-bold">DAY {day + 1}</p>
       <ul className="m-2">
-        {planData.length > 0 ? (
-          planData.map((item, i) => (
-            <PlanItem {...item} onDelete={handleDelete} key={item.id} />
-          ))
+        {content.length > 0 ? (
+          content.map((item: ListItem, i: number) => {
+            return (
+              <PlanItem
+                {...item}
+                onDelete={onDelete}
+                key={item.id}
+                dayId={dayId}
+                time={i}
+              />
+            );
+          })
         ) : (
           <div className="text-4xl font-bold text-stone-300 text-center p-5">
             <h1 className="p-2">일정을</h1>
@@ -49,7 +42,7 @@ export default function PlanDaily({ day, content }: PlanDailyProps) {
           </div>
         )}
       </ul>
-      <Input color="pink" onAdd={handleAdd} />
+      <Input color="pink" onAdd={onAdd} dayId={dayId} />
     </section>
   );
 }
