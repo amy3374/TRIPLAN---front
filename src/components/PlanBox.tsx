@@ -7,6 +7,9 @@ interface planboxprops {
   planInfo: planInfo;
   onDelete: (id: string) => void;
   onAdd: (newItem: ListItem, dayId?: string) => void;
+  onDragStart: (e: any, id: string, dayId: string) => void;
+  onDrop: (id: string, dayId: string) => void;
+  onDayDrop: (dayId: string) => void;
 }
 
 export default function PlanBox({
@@ -14,6 +17,9 @@ export default function PlanBox({
   planInfo,
   onDelete,
   onAdd,
+  onDragStart,
+  onDrop,
+  onDayDrop,
 }: planboxprops) {
   return (
     <section>
@@ -31,6 +37,9 @@ export default function PlanBox({
                 day={content[key].day}
                 content={content[key].items}
                 dayId={key}
+                onDragStart={onDragStart}
+                onDrop={onDrop}
+                onDayDrop={onDayDrop}
               />
             );
           })}

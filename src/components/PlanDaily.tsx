@@ -1,5 +1,3 @@
-import React, { useState, useEffect } from "react";
-import { v4 } from "uuid";
 import Input from "./Input";
 import { ListItem } from "../pages/Plan";
 import PlanItem from "./PlanItem";
@@ -11,6 +9,9 @@ interface PlanDailyProps {
   dayId: string;
   onDelete: (id: string) => void;
   onAdd: (newItem: ListItem, dayId?: string) => void;
+  onDragStart: (e: any, id: string, dayId: string) => void;
+  onDrop: (id: string, dayId: string) => void;
+  onDayDrop: (dayId: string) => void;
 }
 export default function PlanDaily({
   day,
@@ -18,11 +19,24 @@ export default function PlanDaily({
   dayId,
   onDelete,
   onAdd,
+  onDragStart,
+  onDrop,
+  onDayDrop,
 }: PlanDailyProps) {
   return (
-    <section className="p-2">
+    <section
+      className="p-2"
+      onDragOver={(e: any) => {
+        e.preventDefault();
+      }}
+      onDrop={(e: any) => {
+        e.preventDefault();
+        //    console.log(e);
+        onDayDrop(dayId);
+      }}
+    >
       <p className="text-xl font-bold">DAY {day + 1}</p>
-      <ul className="m-2">
+      <ul className="m-2 ">
         {content.length > 0 ? (
           content.map((item: ListItem, i: number) => {
             return (
@@ -32,6 +46,8 @@ export default function PlanDaily({
                 key={item.id}
                 dayId={dayId}
                 time={i}
+                onDragStart={onDragStart}
+                onDrop={onDrop}
               />
             );
           })
