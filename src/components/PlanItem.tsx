@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react";
 import { FaTrashAlt } from "react-icons/fa";
 import { MdDragIndicator } from "react-icons/md";
-import Time from "./Time";
+
 
 export type PlanItemProps = {
   item: string;

@@ -1,7 +1,7 @@
 import Input from "./Input";
 import { ListItem } from "../pages/Plan";
 import PlanItem from "./PlanItem";
-import Time from "./Time";
+
 
 interface PlanDailyProps {
   day: number;

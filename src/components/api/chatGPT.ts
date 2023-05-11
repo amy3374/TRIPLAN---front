@@ -24,5 +24,5 @@ export function getPlan(des?: string, schedule?: string) {
       "Content-Type": "application/json",
     },
     data: JSON.stringify(data),
-  }).then((res) => { console.log(res); return res.data.choices[0].message.content});
+  }).then((res) => { console.log(res); return res.data.choices[0].message.content}).catch(res=>{return "DAY 1: -속초해수ㅛㄱ당 -ㅇㄹㄴㄹ -ㅇㄴㄹㄴㅇㄹㄴㅇ DAY 2: -SDSDFDSF -SDFSDFSD -SDFDSF"});
 }
