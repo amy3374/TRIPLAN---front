@@ -2,24 +2,35 @@ import React, { useState } from "react";
 import { FaPlus } from "react-icons/fa";
 import { ListItem } from "../pages/Plan";
 import { v4 } from "uuid";
+import { useDispatch } from "react-redux";
 
 interface inputProps {
   color: string;
   dayId?: string;
-  onAdd: (input: ListItem, dayId?: string) => void;
+  onAdd?: (input: ListItem, dayId?: string) => void;
+  component?:string
 }
 
-export default function Input({ color, onAdd, dayId }: inputProps) {
+export default function Input({ color, onAdd, dayId,component }: inputProps) {
   const [input, setInput] = useState<string>("");
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInput(e.target.value);
   };
+  const dispatch = useDispatch();
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (input?.trim().length === 0) {
       return;
     }
-    onAdd({ id: v4(), item: input as string }, dayId);
+
+    component==="Baggage" && dispatch({
+      type:"ADD",
+      payload:{id: v4(), item: input as string}
+      
+      
+    })
+
+   onAdd && onAdd({ id: v4(), item: input as string }, dayId);
     setInput("");
   };
   // console.log(input);

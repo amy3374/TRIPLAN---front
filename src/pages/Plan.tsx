@@ -3,6 +3,7 @@ import PlanBox from "../components/PlanBox";
 import BaggageBox from "../components/BaggageBox";
 import { useLocation } from "react-router-dom";
 import { v4 } from "uuid";
+import { useSelector } from "react-redux";
 
 export type ListItem = {
   id: string;
@@ -21,23 +22,19 @@ export default function Plan() {
   const [dragIndex, setDragIndex] = useState<number>();
   const [dragDayIndex, setDragDayIndex] = useState<string>("");
   const [dropIndex, setDropIndex] = useState<number>();
-
+  const list = useSelector((state:any)=>(state.baggageList))
   const [plan, setPlan] = useState<PlanData>();
-  const [list, setList] = useState<ListItem[]>([
-    { item: "칫솔", id: "sdf" },
-    { item: "치약", id: v4() },
-    { item: "치약", id: v4() },
-  ]);
+  
 
-  const handleAdd = useCallback(
-    (newItem: ListItem) => setList((items) => [...items, newItem]),
-    []
-  );
+  // const handleAdd = useCallback(
+  //   (newItem: ListItem) => setList((items) => [...items, newItem]),
+  //   []
+  // );
 
-  const handleDelete = useCallback(
-    (id: string) => setList((items) => items.filter((item) => item.id !== id)),
-    []
-  );
+  // const handleDelete = useCallback(
+  //   (id: string) => setList((items) => items.filter((item) => item.id !== id)),
+  //   []
+  // );
 
   const handleAddPlan = (newItem: ListItem, dayId?: string) => {
     const updated = { ...plan };
@@ -147,7 +144,7 @@ export default function Plan() {
           />
         }
 
-        <BaggageBox list={list} onAdd={handleAdd} onDelete={handleDelete} />
+        <BaggageBox list={list} onAdd={handleAddPlan} onDelete={handleDeletePlan} />
       </div>
       <button className="bg-green p-2 text-white rounded-lg m-2 w-14 self-end">
         저장

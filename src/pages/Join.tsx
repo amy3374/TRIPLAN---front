@@ -19,8 +19,6 @@ const [userInput, setUserInput] =useState<UserData>();
     console.log(userInput);
     const {name, username} = userInput as UserData
    
-    
-    
     fetch('http://localhost:8000/checkUsername', {
       method: 'POST',
       headers: {
@@ -30,8 +28,8 @@ const [userInput, setUserInput] =useState<UserData>();
         name,
         username
       })}) .then(res => res.json()     
-      ).then(res=> {if(res.status==400)  setUsableId(400)
-      if(res.status==200  )setUsableId(200)})
+      ).then(res=> {if(res.status===400)  setUsableId(400)
+      if(res.status===200  )setUsableId(200)})
     }
   const createAccount=(e:any)=>{
     e.preventDefault()
@@ -51,9 +49,9 @@ const [userInput, setUserInput] =useState<UserData>();
       })
     }).then(res=>
       res.json()).then(res=>{
-       if(res.status==200 ) return navigate("/login")
-       if(res.status==400 ) return alert("This username/email is already taken")
-       if(res.status==404 ) return navigate("/login")
+       if(res.status===200 ) return navigate("/login")
+       if(res.status===400 ) return alert("This email is already taken")
+       if(res.status===404 ) return navigate("/login")
        
        })
     

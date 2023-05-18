@@ -9,6 +9,7 @@ interface Boxprops {
 }
 
 export default function BaggageBox({ list, onAdd, onDelete }: Boxprops) {
+
   return (
     <ul className="flex flex-col ">
       <div className="sticky top-0 ">
@@ -16,7 +17,7 @@ export default function BaggageBox({ list, onAdd, onDelete }: Boxprops) {
           준비물
         </div>
         <div className=" border p-3 mt-3 border-stone-300 rounded-lg ">
-          <Input color="green" onAdd={onAdd} />
+          <Input color="green" component="Baggage" />
           {list.length == 0 ? (
             <div className="text-4xl font-bold text-stone-300 text-center p-5">
               <h1 className="p-2">준비물을</h1>
