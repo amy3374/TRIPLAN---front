@@ -1,13 +1,14 @@
 import React from 'react'
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHome, faUser } from "@fortawesome/free-solid-svg-icons";
 import { Link } from 'react-router-dom';
-
-const User = () => {
+interface UserProps {
+    user:string;
+    name:string;
+  }
+const User = ({user}:{user:UserProps}) => {
   return (
-    <div>
-      <img width={30} src="https://assets.stickpng.com/images/585e4bf3cb11b227491c339a.png"/>
-      <Link to="/myPlan"><FontAwesomeIcon icon={faHome} size='2x'/></Link>
+    <div className='flex mt-1 ml-2'>
+      <Link to="/myPlan"><img width={30} src="https://assets.stickpng.com/images/585e4bf3cb11b227491c339a.png"/></Link>
+      <Link to="/myPlan"><span className='ml-2'>{user.name}님</span></Link>
     </div>
   )
 }
