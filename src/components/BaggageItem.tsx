@@ -6,7 +6,7 @@ export type BaggageitemProps = {
   item: string;
   id: string;
   onDelete: (id: string) => void;
-  Baggage?:boolean
+
 };
 
 export default function BaggageItem({ item, id }: BaggageitemProps) {

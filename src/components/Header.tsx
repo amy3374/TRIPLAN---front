@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Logo from './ui/Logo'
 import { Link, useNavigate } from 'react-router-dom'
+import User from './User';
 
 
 export default function Header() {
@@ -28,9 +29,9 @@ const logout = ()=>{
      <Link to="/"><Logo /></Link>
       {user ? 
       <div>
-        <button className="bg-green p-2 rounded-xl text-white" >마이페이지</button>
         <button className="bg-green p-2 rounded-xl text-white" onClick={logout}>로그아웃</button>
-        </div>
+        <User/>
+      </div>
        :
       <button className="bg-green p-2 rounded-xl text-white" onClick={goToLogin}>로그인</button>}
     </div>
