@@ -1,6 +1,8 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import MyPlanList from '../components/MyPlanList'
 import { useSelector } from 'react-redux';
+import { getPlan } from '../components/api/chatGPT';
+import axios from 'axios';
 
 
 export type MyPlanProps = {
@@ -8,9 +10,24 @@ export type MyPlanProps = {
   id: string;
 };
 export default function MyPlan() {
-  const mytrip = useSelector((state: any) => {
-    return state.BaggageList.baggageList;
+  const [mytrip,setMyTrip] = useState<any>();
+  const user = useSelector((state: any) => {
+    return state.User;
   });
+useEffect(()=>{
+
+  axios({
+    url: `http://localhost:8000/save/${user.username}`,
+
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    
+  }).then(res=>setMyTrip(res.data.planData));
+},[])
+console.log(mytrip);
+
   return (
     <div>
       <ul className="flex flex-col ">
@@ -25,7 +42,7 @@ export default function MyPlan() {
               <h1 className="p-2">추가해보세요!</h1>
             </div>
           ) : (
-            mytrip && mytrip.map((item:any) => <MyPlanList {...item} key={item.id} />)
+           mytrip && mytrip.map((item:any) => <MyPlanList des={item.des} key={item._id} />)
           )}
           </div> 
         </div>

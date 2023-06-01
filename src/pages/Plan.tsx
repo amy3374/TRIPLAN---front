@@ -5,6 +5,7 @@ import { useLocation } from "react-router-dom";
 
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
+import { save } from "../components/api/database";
 
 export type ListItem = {
   id: string;
@@ -26,7 +27,16 @@ export default function Plan() {
   const plan = useSelector((state: any) => {
     return state.PlanList.planList;
   });
-
+const user = useSelector((state:any) => {
+  return state.User;
+})
+  console.log(plan);
+  
+const handleClick= ()=>{
+  console.log(1);
+  
+  save(plan,location.state.planInfo.des,user.username);
+}
   useEffect(() => {
     // console.log(JSON.parse(location.state.res));
     dispatch({ type: "INIT", payload: location.state.res });
@@ -44,7 +54,7 @@ export default function Plan() {
 
         <BaggageBox list={list} />
       </div>
-      <button className="bg-green p-2 text-white rounded-lg m-2 w-14 self-end">
+      <button onClick={handleClick} className="bg-green p-2 text-white rounded-lg m-2 w-14 self-end">
         저장
       </button>
     </section>
