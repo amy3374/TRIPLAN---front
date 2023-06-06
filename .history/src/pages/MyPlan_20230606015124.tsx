@@ -12,12 +12,8 @@ export default function MyPlan() {
   const [mytrip, setMyTrip] = useState<any>();
   const user = useSelector((state: any) => {
     return state.User;
-  });
-  useEffect(() => {
-    user && getSave(user.username).then((res) => setMyTrip(res.data.planData));
-  }, [user]);
-
-  console.log(mytrip);
+  }).then((user: any) => getSave(user.username));
+  useEffect(() => {}, []);
 
   return (
     <div>

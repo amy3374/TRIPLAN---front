@@ -1,13 +1,7 @@
 import axios from "axios";
 import { ListItem, PlanData } from "../../pages/Plan";
 
-export async function save(
-  username: string,
-  des: string,
-  schedule: string,
-  plan: any,
-  baggageList: ListItem[]
-) {
+export async function save(plan: any, des: string, username: string) {
   console.log(2);
 
   const res = await axios({
@@ -21,8 +15,6 @@ export async function save(
       username,
       plan,
       des,
-      schedule,
-      baggageList,
     }),
   });
   console.log(res);
@@ -30,7 +22,6 @@ export async function save(
 
 export function getSave(username: string) {
   console.log(3);
-  console.log(username);
 
   return axios({
     url: `http://localhost:8000/save/${username}`,
@@ -39,5 +30,8 @@ export function getSave(username: string) {
     headers: {
       "Content-Type": "application/json",
     },
+    data: JSON.stringify({
+      username,
+    }),
   });
 }

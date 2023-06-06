@@ -14,10 +14,8 @@ export default function MyPlan() {
     return state.User;
   });
   useEffect(() => {
-    user && getSave(user.username).then((res) => setMyTrip(res.data.planData));
+    user && getSave(user.username).then(console.log);
   }, [user]);
-
-  console.log(mytrip);
 
   return (
     <div>

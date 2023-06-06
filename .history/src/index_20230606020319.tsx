@@ -12,7 +12,6 @@ import Login from "./pages/Login";
 import Join from "./pages/Join";
 import { Provider } from "react-redux";
 import store from "./redux/store";
-import ProtectedRouted from "./pages/ProtectedRouted";
 
 const router = createBrowserRouter([
   {
@@ -29,11 +28,7 @@ const router = createBrowserRouter([
       },
       {
         path: "myplan",
-        element: (
-          <ProtectedRouted>
-            <MyPlan />
-          </ProtectedRouted>
-        ),
+        element: <MyPlan />,
       },
       {
         path: "myplandetail",

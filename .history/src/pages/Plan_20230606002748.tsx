@@ -35,13 +35,7 @@ export default function Plan() {
   const handleClick = () => {
     console.log(1);
 
-    save(
-      user.username,
-      location.state.planInfo.des,
-      location.state.planInfo.schedule,
-      plan,
-      list
-    );
+    save(plan, location.state.planInfo.des, user.username);
   };
   useEffect(() => {
     // console.log(JSON.parse(location.state.res));

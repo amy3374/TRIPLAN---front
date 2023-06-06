@@ -36,11 +36,11 @@ export default function Plan() {
     console.log(1);
 
     save(
-      user.username,
       location.state.planInfo.des,
-      location.state.planInfo.schedule,
+      location.state.planInfo.shedule,
       plan,
-      list
+      list,
+      user.username
     );
   };
   useEffect(() => {

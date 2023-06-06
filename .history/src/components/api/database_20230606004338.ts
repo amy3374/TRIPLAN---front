@@ -1,39 +1,32 @@
 import axios from "axios";
 import { ListItem, PlanData } from "../../pages/Plan";
 
-export async function save(
-  username: string,
-  des: string,
-  schedule: string,
-  plan: any,
-  baggageList: ListItem[]
-) {
+export async function save(plan: any, des: string, id: string) {
   console.log(2);
 
   const res = await axios({
-    url: `http://localhost:8000/save/${username}`,
+    url: `http://localhost:8000/save/llssee123`,
 
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
     data: JSON.stringify({
-      username,
       plan,
       des,
-      schedule,
-      baggageList,
     }),
   });
-  console.log(res);
+  if (res.status === 200) {
+  }
+  if (res.status === 400) {
+  }
 }
 
-export function getSave(username: string) {
+export function getSave(id: string) {
   console.log(3);
-  console.log(username);
 
   return axios({
-    url: `http://localhost:8000/save/${username}`,
+    url: `http://localhost:8000/save/${id}`,
 
     method: "GET",
     headers: {

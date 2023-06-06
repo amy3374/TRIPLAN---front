@@ -17,8 +17,6 @@ export default function MyPlan() {
     user && getSave(user.username).then((res) => setMyTrip(res.data.planData));
   }, [user]);
 
-  console.log(mytrip);
-
   return (
     <div>
       <ul className="flex flex-col ">

@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import MyPlanList from "../components/MyPlanList";
 import { useSelector } from "react-redux";
-
-import { getSave } from "../components/api/database";
+import { getPlan } from "../components/api/chatGPT";
+import axios from "axios";
 
 export type MyPlanProps = {
   item: string;
@@ -14,9 +14,8 @@ export default function MyPlan() {
     return state.User;
   });
   useEffect(() => {
-    user && getSave(user.username).then((res) => setMyTrip(res.data.planData));
-  }, [user]);
-
+    getPlan(user.username).then((res) => setMyTrip(res));
+  }, []);
   console.log(mytrip);
 
   return (
