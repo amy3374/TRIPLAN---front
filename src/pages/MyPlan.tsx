@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import MyPlanList from "../components/MyPlanList";
 import { useSelector } from "react-redux";
-
 import { getSave } from "../components/api/database";
 
 export type MyPlanProps = {
@@ -17,7 +16,7 @@ export default function MyPlan() {
     user && getSave(user.username).then((res) => setMyTrip(res.data.planData));
   }, [user]);
 
-  console.log(mytrip);
+  console.log("mytrip",mytrip);
 
   return (
     <div>
@@ -35,7 +34,8 @@ export default function MyPlan() {
             ) : (
               mytrip &&
               mytrip.map((item: any) => (
-                <MyPlanList des={item.des} key={item._id} />
+            <MyPlanList des={item.des} username={user.username} id={item._id} schedule={item.schedule
+                } />
               ))
             )}
           </div>

@@ -41,3 +41,16 @@ export function getSave(username: string) {
     },
   });
 }
+export function getPlanDetail(username:string,id:string){
+   console.log(4);
+  // console.log(id);
+
+  return axios({
+    url: `http://localhost:8000/save/${username}/${id}`,
+
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+}

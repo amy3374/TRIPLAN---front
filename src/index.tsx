@@ -36,7 +36,7 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "myplandetail",
+        path: "myplan/:id",
         element: <MyPlanDetail />,
       },
       {
