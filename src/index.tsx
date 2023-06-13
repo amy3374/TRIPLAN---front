@@ -13,6 +13,7 @@ import Join from "./pages/Join";
 import { Provider } from "react-redux";
 import store from "./redux/store";
 import ProtectedRouted from "./pages/ProtectedRouted";
+import ReviewEdit from "./pages/ReviewEdit";
 
 const router = createBrowserRouter([
   {
@@ -46,6 +47,10 @@ const router = createBrowserRouter([
       {
         path: "join",
         element: <Join />,
+      },
+      {
+        path: "review",
+        element: <ReviewEdit />,
       },
     ],
   },
