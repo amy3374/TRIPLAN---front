@@ -58,15 +58,3 @@ export async function saveReview(id: string, content: string) {
     }),
   });
 }
-
-export async function getReview(id: string) {
-  const res = await axios({
-    url: `http://localhost:8000/review/${id}`,
-
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
-  return res.data;
-}

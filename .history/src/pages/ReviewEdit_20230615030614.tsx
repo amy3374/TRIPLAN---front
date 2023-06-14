@@ -46,13 +46,13 @@ export default function ReviewEdit() {
 
   return (
     <div>
-      <Editor
+      {/* <Editor
         editorState={editorState}
         toolbarClassName="toolbarClassName"
         wrapperClassName="wrapperClassName"
         editorClassName="editorClassName"
         onEditorStateChange={onEditorStateChange}
-      />
+      /> */}
       <button
         onClick={handleClick}
         className="bg-green p-2 text-white rounded-lg m-2 w-14 self-end"

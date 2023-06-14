@@ -5,7 +5,6 @@ import BaggageBox from "../components/BaggageBox";
 import { useSelector } from "react-redux";
 import { ListItem } from "./Plan";
 import PlanBox from "../components/PlanBox";
-import Review from "../components/Review";
 
 export interface Boxprops {
   list: ListItem[];
@@ -33,7 +32,7 @@ export default function MyPlanDetail() {
   const { id } = useParams();
   const [review, setReview] = useState<string>();
   const handleClick = () => {
-    navigate(`/reviewEdit/${id}`, { state: { review } });
+    navigate(`/reviewEdit/${id}`, { state: {} });
   };
   const user = useSelector((state: any) => {
     return state.User;
@@ -44,11 +43,13 @@ export default function MyPlanDetail() {
         setMyTripDetail(res.data.planDetail)
       );
     id &&
-      getReview(id).then((res) => {
-        res.review !== null && setReview(res.review.content);
-      });
+      getReview(id)
+        .then((res) => res.data.review)
+        .then((res) => {
+          res !== null && setReview(res);
+        });
   }, [id]);
-  console.log(review);
+  console.log(myTripDetail);
 
   const planinfo = { des: myTripDetail?.des, schedule: myTripDetail?.schedule };
 
@@ -64,12 +65,11 @@ export default function MyPlanDetail() {
 
         <BaggageBox list={myTripDetail?.baggageList as ListItem[]} />
       </div>
-      {review && <Review content={review} />}
       <button
         onClick={handleClick}
-        className="bg-green p-2 text-white rounded-lg m-2 w-max self-end"
+        className="bg-green p-2 text-white rounded-lg m-2 w-14 self-end"
       >
-        {review ? "후기 수정" : "후기 작성"}
+        후기
       </button>
     </section>
   );

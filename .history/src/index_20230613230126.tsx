@@ -49,7 +49,7 @@ const router = createBrowserRouter([
         element: <Join />,
       },
       {
-        path: "reviewEdit/:id",
+        path: "reviewEdit",
         element: <ReviewEdit />,
       },
     ],

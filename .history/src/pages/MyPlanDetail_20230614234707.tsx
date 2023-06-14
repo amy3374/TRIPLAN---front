@@ -33,7 +33,7 @@ export default function MyPlanDetail() {
   const { id } = useParams();
   const [review, setReview] = useState<string>();
   const handleClick = () => {
-    navigate(`/reviewEdit/${id}`, { state: { review } });
+    navigate(`/reviewEdit/${id}`, { state: {} });
   };
   const user = useSelector((state: any) => {
     return state.User;
@@ -44,9 +44,11 @@ export default function MyPlanDetail() {
         setMyTripDetail(res.data.planDetail)
       );
     id &&
-      getReview(id).then((res) => {
-        res.review !== null && setReview(res.review.content);
-      });
+      getReview(id)
+        .then((res) => res.data.content)
+        .then((res) => {
+          res.review !== null && setReview(res);
+        });
   }, [id]);
   console.log(review);
 
@@ -67,9 +69,9 @@ export default function MyPlanDetail() {
       {review && <Review content={review} />}
       <button
         onClick={handleClick}
-        className="bg-green p-2 text-white rounded-lg m-2 w-max self-end"
+        className="bg-green p-2 text-white rounded-lg m-2 w-14 self-end"
       >
-        {review ? "후기 수정" : "후기 작성"}
+        후기
       </button>
     </section>
   );

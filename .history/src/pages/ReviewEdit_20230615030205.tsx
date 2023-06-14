@@ -5,12 +5,22 @@ import draftToHtml from "draftjs-to-html";
 import htmlToDraft from "html-to-draftjs";
 import "../../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import { saveReview } from "../components/api/database";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import {
+  Navigate,
+  useLocation,
+  useNavigate,
+  useParams,
+} from "react-router-dom";
 
 export default function ReviewEdit() {
   const { id } = useParams();
   const location = useLocation();
   const navigate = useNavigate();
+
+  const handleClick = () => {
+    saveReview(id as string, editorToHtml);
+    navigate(-1);
+  };
 
   const [editorState, setEditorState] = useState<any>(
     EditorState.createEmpty()
@@ -21,11 +31,6 @@ export default function ReviewEdit() {
   const editorToHtml = draftToHtml(
     convertToRaw(editorState.getCurrentContent())
   );
-
-  const handleClick = () => {
-    saveReview(id as string, editorToHtml);
-    navigate(-1);
-  };
 
   useEffect(() => {
     if (location.state.review) {
@@ -59,6 +64,10 @@ export default function ReviewEdit() {
       >
         저장
       </button>
+      <div
+        className=" border p-3 mt-3 border-stone-300 rounded-lg "
+        dangerouslySetInnerHTML={{ __html: editorToHtml }}
+      ></div>
     </div>
   );
 }

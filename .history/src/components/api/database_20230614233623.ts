@@ -68,5 +68,5 @@ export async function getReview(id: string) {
       "Content-Type": "application/json",
     },
   });
-  return res.data;
+  console.log(res);
 }

@@ -33,7 +33,7 @@ export default function MyPlanDetail() {
   const { id } = useParams();
   const [review, setReview] = useState<string>();
   const handleClick = () => {
-    navigate(`/reviewEdit/${id}`, { state: { review } });
+    navigate(`/reviewEdit/${id}`, { state: {} });
   };
   const user = useSelector((state: any) => {
     return state.User;

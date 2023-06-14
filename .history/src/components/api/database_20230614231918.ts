@@ -45,28 +45,3 @@ export function getPlanDetail(username: string, id: string) {
     },
   });
 }
-export async function saveReview(id: string, content: string) {
-  const res = await axios({
-    url: `http://localhost:8000/review/${id}`,
-
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    data: JSON.stringify({
-      content,
-    }),
-  });
-}
-
-export async function getReview(id: string) {
-  const res = await axios({
-    url: `http://localhost:8000/review/${id}`,
-
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
-  return res.data;
-}

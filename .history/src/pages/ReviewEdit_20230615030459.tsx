@@ -5,7 +5,12 @@ import draftToHtml from "draftjs-to-html";
 import htmlToDraft from "html-to-draftjs";
 import "../../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import { saveReview } from "../components/api/database";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import {
+  Navigate,
+  useLocation,
+  useNavigate,
+  useParams,
+} from "react-router-dom";
 
 export default function ReviewEdit() {
   const { id } = useParams();
@@ -59,6 +64,10 @@ export default function ReviewEdit() {
       >
         저장
       </button>
+      <div
+        className=" border p-3 mt-3 border-stone-300 rounded-lg "
+        dangerouslySetInnerHTML={{ __html: editorToHtml }}
+      ></div>
     </div>
   );
 }
