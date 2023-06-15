@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import MyPlanList from "../components/MyPlanList";
 import { useSelector } from "react-redux";
 import { getSave } from "../components/api/database";
+import { useDispatch } from "react-redux";
+import { PlanData } from "./Plan";
 
 export type MyPlanProps = {
   item: string;
@@ -9,20 +11,29 @@ export type MyPlanProps = {
 };
 export default function MyPlan() {
   const [mytrip, setMyTrip] = useState<any>();
+  const dispatch = useDispatch();
+  const myPlanList = useSelector((state:any)=>{
+  return state.MyPlanReducer.myPlanList})
   const user = useSelector((state: any) => {
     return state.User;
   });
   useEffect(() => {
-    user && getSave(user.username).then((res) => setMyTrip(res.data.planData));
-  }, [user]);
+    user && getSave(user.username).then((res) =>    {setMyTrip(res.data.planData); dispatch({type:"INIT_MP",payload:res.data.planData});;
+    });
+  
+  }, [user.username]);
 
-  console.log("mytrip",mytrip);
+
+
+
+  
+
 
   return (
     <div>
       <ul className="flex flex-col ">
         <div className="sticky top-0 ">
-          <div className="mt-5 bg-lightpink rounded-lg p-2 text-md font-bold text-center  ">
+          <div className="mt-5 bg-lighpink rounded-lg p-2 text-md font-bold text-center  ">
             내 여행 일정
           </div>
           <div className=" border p-3 mt-3 border-stone-300 rounded-lg ">
@@ -32,9 +43,9 @@ export default function MyPlan() {
                 <h1 className="p-2">추가해보세요!</h1>
               </div>
             ) : (
-              mytrip &&
-              mytrip.map((item: any) => (
-            <MyPlanList des={item.des} username={user.username} id={item._id} schedule={item.schedule
+              myPlanList &&
+              myPlanList.map((item: any) => (
+            <MyPlanList key={item._id} des={item.des} username={user.username} id={item._id} schedule={item.schedule
                 } />
               ))
             )}

@@ -4,14 +4,17 @@ type baggageState = {
 };
 let initialState: baggageState = {
   baggageList: [
-    { item: "칫솔", id: "sdf" },
-    { item: "치약", id: "sdsd" },
-    { item: "치약", id: "asd" },
+  
   ],
 };
 
 export default function BaggageList(state = initialState, action: any) {
   const { type, payload } = action;
+  if (type === "INIT_B") {
+    return {
+      baggageList: [...payload],
+    };
+  }
   if (type === "ADD_B") {
     return {
       ...state,

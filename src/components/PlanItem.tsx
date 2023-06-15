@@ -7,7 +7,6 @@ import { useDispatch } from "react-redux";
 export type PlanItemProps = {
   item: string;
   id: string;
-
   dayId: string;
   time: number;
 };
@@ -15,7 +14,6 @@ export type PlanItemProps = {
 export default function PlanItem({
   item,
   id,
-
   dayId,
   time,
 }: PlanItemProps) {
@@ -23,6 +21,7 @@ export default function PlanItem({
   const plan = useSelector((state: any) => state.PlanList);
 
   const onDelete_re = (id: string, dayId: string) => {
+    console.log("삭제",id,dayId)
     dispatch({ type: "DELETE_P", payload: { dayId, id } });
   };
   const [drag, setDrag] = useState<boolean>(false);

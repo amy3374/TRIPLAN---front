@@ -45,7 +45,7 @@ export default function Plan() {
   };
   useEffect(() => {
     // console.log(JSON.parse(location.state.res));
-    dispatch({ type: "INIT", payload: location.state.res });
+    dispatch({ type: "INIT_P", payload: location.state.res });
   }, []);
 
   return (

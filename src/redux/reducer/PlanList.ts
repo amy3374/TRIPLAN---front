@@ -1,4 +1,5 @@
 import { PlanData } from "../../pages/Plan";
+
 type planState = {
   planList?: PlanData;
   dragIndex?: number;
@@ -8,7 +9,7 @@ let initialState: planState = {};
 
 export default function PlanList(state = initialState, action: any) {
   const { type, payload } = action;
-  if (type === "INIT") {
+  if (type === "INIT_P") {
     return {
       planList: { ...payload },
     };
@@ -25,6 +26,14 @@ export default function PlanList(state = initialState, action: any) {
       planList: updated,
     };
   }
+  // if (type === "DELETE_PL") {
+  //   return {
+  //     ...state,
+  //     planList: {
+  //       ...state.planList?.filter((item:any) => item.id !== payload.id),
+  //     },
+  //   };
+  // }
 
   if (type === "ADD_P") {
     const updated = { ...state.planList } as PlanData;
