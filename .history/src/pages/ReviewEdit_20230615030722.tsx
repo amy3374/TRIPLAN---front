@@ -12,9 +12,7 @@ export default function ReviewEdit() {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const [editorState, setEditorState] = useState<any>(
-    EditorState.createEmpty()
-  );
+  const [editorState, setEditorState] = useState<any>();
   const onEditorStateChange = (editorState: any) => {
     setEditorState(editorState);
   };

@@ -47,7 +47,6 @@ export default function ReviewEdit() {
   return (
     <div>
       <Editor
-        editorState={editorState}
         toolbarClassName="toolbarClassName"
         wrapperClassName="wrapperClassName"
         editorClassName="editorClassName"

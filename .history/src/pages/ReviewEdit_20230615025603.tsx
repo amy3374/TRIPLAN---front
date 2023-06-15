@@ -5,28 +5,31 @@ import draftToHtml from "draftjs-to-html";
 import htmlToDraft from "html-to-draftjs";
 import "../../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import { saveReview } from "../components/api/database";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import {
+  Navigate,
+  useLocation,
+  useNavigate,
+  useParams,
+} from "react-router-dom";
 
 export default function ReviewEdit() {
   const { id } = useParams();
   const location = useLocation();
   const navigate = useNavigate();
-
+  const handleClick = () => {
+    saveReview(id as string, editorToHtml);
+    navigate(-1);
+  };
   const [editorState, setEditorState] = useState<any>(
     EditorState.createEmpty()
   );
   const onEditorStateChange = (editorState: any) => {
+    // editorState에 값 설정
     setEditorState(editorState);
   };
   const editorToHtml = draftToHtml(
     convertToRaw(editorState.getCurrentContent())
   );
-
-  const handleClick = () => {
-    saveReview(id as string, editorToHtml);
-    navigate(-1);
-  };
-
   useEffect(() => {
     if (location.state.review) {
       const blocksFromHtml = htmlToDraft(location.state.review);
@@ -37,7 +40,6 @@ export default function ReviewEdit() {
           contentBlocks,
           entityMap
         );
-
         const editorState = EditorState.createWithContent(contentState);
         setEditorState(editorState);
       }
