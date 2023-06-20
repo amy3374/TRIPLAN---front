@@ -20,7 +20,6 @@ export default function ReviewEdit() {
 
   const handleChange = (content: string) => {
     setContent(content);
-    console.log(content);
   };
 
   const editor = useRef<SunEditorCore>();
@@ -37,19 +36,7 @@ export default function ReviewEdit() {
         onChange={handleChange}
         defaultValue={location.state.review && location.state.review}
         setOptions={{
-          buttonList: [
-            ["undo", "redo"],
-            ["font", "fontSize"],
-            ["outdent", "indent", "align"],
-            [
-              "bold",
-              "underline",
-              "italic",
-              "strike",
-              "subscript",
-              "superscript",
-            ],
-          ], // Or Array of button list, eg. [['font', 'align'], ['image']]
+          buttonList: [["font", "bold", "fontSize", "image"]], // Or Array of button list, eg. [['font', 'align'], ['image']]
           // plugins: [font] set plugins, all plugins are set by default
           // Other option
         }}

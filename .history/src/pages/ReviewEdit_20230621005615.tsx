@@ -16,11 +16,11 @@ export default function ReviewEdit() {
   const handleClick = () => {
     saveReview(id as string, content as string);
     navigate(-1);
+    console.log(content);
   };
 
   const handleChange = (content: string) => {
     setContent(content);
-    console.log(content);
   };
 
   const editor = useRef<SunEditorCore>();
@@ -39,8 +39,8 @@ export default function ReviewEdit() {
         setOptions={{
           buttonList: [
             ["undo", "redo"],
-            ["font", "fontSize"],
-            ["outdent", "indent", "align"],
+            ["font", "fontSize", "formatBlock"],
+            ["paragraphStyle", "blockquote"],
             [
               "bold",
               "underline",

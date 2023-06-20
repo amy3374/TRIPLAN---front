@@ -39,8 +39,8 @@ export default function ReviewEdit() {
         setOptions={{
           buttonList: [
             ["undo", "redo"],
-            ["font", "fontSize"],
-            ["outdent", "indent", "align"],
+            ["font", "fontSize", "formatBlock"],
+            ["paragraphStyle", "blockquote"],
             [
               "bold",
               "underline",
@@ -60,6 +60,7 @@ export default function ReviewEdit() {
       >
         저장
       </button>
+      <blockquote>sdf</blockquote>
     </div>
   );
 }

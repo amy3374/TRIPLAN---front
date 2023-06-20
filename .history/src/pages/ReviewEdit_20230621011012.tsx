@@ -40,7 +40,7 @@ export default function ReviewEdit() {
           buttonList: [
             ["undo", "redo"],
             ["font", "fontSize"],
-            ["outdent", "indent", "align"],
+            ["outdent", "indent"],
             [
               "bold",
               "underline",
@@ -49,6 +49,7 @@ export default function ReviewEdit() {
               "subscript",
               "superscript",
             ],
+            ["save", "template"],
           ], // Or Array of button list, eg. [['font', 'align'], ['image']]
           // plugins: [font] set plugins, all plugins are set by default
           // Other option

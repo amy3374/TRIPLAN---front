@@ -39,8 +39,8 @@ export default function ReviewEdit() {
         setOptions={{
           buttonList: [
             ["undo", "redo"],
-            ["font", "fontSize"],
-            ["outdent", "indent", "align"],
+            ["font", "fontSize", "formatBlock"],
+
             [
               "bold",
               "underline",

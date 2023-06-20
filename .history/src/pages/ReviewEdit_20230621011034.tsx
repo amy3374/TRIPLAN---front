@@ -40,7 +40,7 @@ export default function ReviewEdit() {
           buttonList: [
             ["undo", "redo"],
             ["font", "fontSize"],
-            ["outdent", "indent", "align"],
+            ["outdent", "indent"],
             [
               "bold",
               "underline",

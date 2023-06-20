@@ -20,7 +20,6 @@ export default function ReviewEdit() {
 
   const handleChange = (content: string) => {
     setContent(content);
-    console.log(content);
   };
 
   const editor = useRef<SunEditorCore>();
@@ -39,8 +38,8 @@ export default function ReviewEdit() {
         setOptions={{
           buttonList: [
             ["undo", "redo"],
-            ["font", "fontSize"],
-            ["outdent", "indent", "align"],
+            ["font", "fontSize", "formatBlock"],
+            ["paragraphStyle", "blockquote"],
             [
               "bold",
               "underline",
