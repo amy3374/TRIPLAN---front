@@ -13,6 +13,7 @@ export default function Header() {
   const dispatch = useDispatch();
   useEffect(() => {
     const storage = JSON.parse(window.localStorage.getItem("User") as string);
+    console.log("header");
 
     storage &&
       dispatch({

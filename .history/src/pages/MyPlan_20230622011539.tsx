@@ -11,26 +11,17 @@ export type MyPlanProps = {
 };
 export default function MyPlan() {
   const [mytrip, setMyTrip] = useState<any>();
-
-  // const myPlanList = useSelector((state: any) => {
-  //   return state.MyPlanReducer.myPlanList;
-  // });
+  const dispatch = useDispatch();
+  const myPlanList = useSelector((state: any) => {
+    return state.MyPlanReducer.myPlanList;
+  });
   const user = useSelector((state: any) => {
     return state.User;
   });
-
-  const handleDelete = (id: string) => {
-    const updated = mytrip.filter((item: any) => item._id !== id);
-
-    setMyTrip(updated);
-    console.log(mytrip);
-  };
   useEffect(() => {
-    console.log(1);
-
     user &&
       getSave(user.username).then((res) => {
-        setMyTrip(res.data.planData);
+        dispatch({ type: "INIT_MP", payload: res.data.planData });
       });
   }, [user]);
 
@@ -38,7 +29,7 @@ export default function MyPlan() {
   //   mytrip && dispatch({ type: "INIT_MP", payload: mytrip });
   // }, [mytrip]);
 
-  //console.log(myPlanList);
+  console.log(myPlanList);
 
   return (
     <div>
@@ -48,16 +39,15 @@ export default function MyPlan() {
             내 여행 일정
           </div>
           <div className=" border p-3 mt-3 border-stone-300 rounded-lg ">
-            {mytrip && mytrip.length == 0 ? (
+            {myPlanList && myPlanList.length == 0 ? (
               <div className="text-4xl font-bold text-stone-300 text-center p-5">
                 <h1 className="p-2">여행을</h1>
                 <h1 className="p-2">추가해보세요!</h1>
               </div>
             ) : (
-              mytrip &&
-              mytrip.map((item: any) => (
+              myPlanList &&
+              myPlanList.map((item: any) => (
                 <MyPlanList
-                  onDelete={handleDelete}
                   key={item._id}
                   des={item.des}
                   username={user.username}

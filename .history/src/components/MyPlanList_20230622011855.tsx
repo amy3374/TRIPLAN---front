@@ -1,31 +1,28 @@
+import React from "react";
 import { FaTrashAlt } from "react-icons/fa";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { deleteMyPlan, getPlanDetail } from "../components/api/database";
+import { useSelector } from "react-redux";
 
 export type MyPlanListProps = {
   des: string;
   schedule: string;
   id: string;
   username: string;
-  onDelete(id: string): void;
 };
 
-const MyPlanList = ({
-  des,
-  schedule,
-  username,
-  id,
-  onDelete,
-}: MyPlanListProps) => {
+const MyPlanList = ({ des, schedule, username, id }: MyPlanListProps) => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-  const handleDelete = (id: string) => {
+  const onDelete = (id: string) => {
     deleteMyPlan(id, username);
-    onDelete(id);
+    dispatch({ type: "DELETE_MP", payload: { id } });
   };
   const goToMyPlan = () => {
     navigate(`/myPlan/${id}`);
+
     getPlanDetail(username, id);
   };
 
@@ -39,7 +36,7 @@ const MyPlanList = ({
         </div>
         <button
           className="transition-color hover:text-green  ease-in duration-150 cursor-pointer"
-          onClick={() => handleDelete(id)}
+          onClick={() => onDelete(id)}
         >
           <FaTrashAlt />
         </button>

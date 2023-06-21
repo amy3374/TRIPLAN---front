@@ -18,13 +18,6 @@ export default function MyPlan() {
   const user = useSelector((state: any) => {
     return state.User;
   });
-
-  const handleDelete = (id: string) => {
-    const updated = mytrip.filter((item: any) => item._id !== id);
-
-    setMyTrip(updated);
-    console.log(mytrip);
-  };
   useEffect(() => {
     console.log(1);
 
@@ -57,7 +50,6 @@ export default function MyPlan() {
               mytrip &&
               mytrip.map((item: any) => (
                 <MyPlanList
-                  onDelete={handleDelete}
                   key={item._id}
                   des={item.des}
                   username={user.username}

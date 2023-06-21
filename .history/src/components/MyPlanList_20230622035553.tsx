@@ -1,7 +1,9 @@
+import React, { useRef } from "react";
 import { FaTrashAlt } from "react-icons/fa";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { deleteMyPlan, getPlanDetail } from "../components/api/database";
+import { useSelector } from "react-redux";
 
 export type MyPlanListProps = {
   des: string;
@@ -19,6 +21,7 @@ const MyPlanList = ({
   onDelete,
 }: MyPlanListProps) => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleDelete = (id: string) => {
     deleteMyPlan(id, username);
@@ -26,6 +29,7 @@ const MyPlanList = ({
   };
   const goToMyPlan = () => {
     navigate(`/myPlan/${id}`);
+
     getPlanDetail(username, id);
   };
 

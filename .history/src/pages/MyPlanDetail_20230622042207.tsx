@@ -49,16 +49,7 @@ export default function MyPlanDetail() {
     return state.BaggageList.baggageList;
   });
 
-  const planEdit = () => {
-    edit(
-      user.username,
-      id,
-      plan,
-      myTripDetail?.baggageList,
-      myTripDetail?.des as string,
-      myTripDetail?.schedule as string
-    );
-  };
+  console.log("plan", plan);
 
   useEffect(() => {
     id &&
@@ -86,19 +77,13 @@ export default function MyPlanDetail() {
 
         <BaggageBox list={list as ListItem[]} />
       </div>
-      <button
-        onClick={planEdit}
-        className="bg-pink p-2 text-black font-bold rounded-lg m-2 w-14 self-end"
-      >
-        수정
-      </button>
       {review && <Review content={review} />}
 
       <button
         onClick={handleClick}
-        className="bg-green p-2  text-white rounded-lg m-2 min-w-fit self-end"
+        className="bg-green p-2 text-white rounded-lg m-2 w-14 self-end"
       >
-        {review ? "후기 수정" : "후기 작성"}
+        {review ? "수정" : "후기"}
       </button>
     </section>
   );

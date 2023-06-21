@@ -18,12 +18,10 @@ export default function Review({ content }: reviewProps) {
           {show ? <BsFillCaretUpFill /> : <BsFillCaretDownFill />}
         </button>
       </div>
-      {show && (
-        <div
-          className=" border p-3 mt-3 border-stone-300 rounded-lg "
-          dangerouslySetInnerHTML={{ __html: content }}
-        ></div>
-      )}
+      <div
+        className=" border p-3 mt-3 border-stone-300 rounded-lg "
+        dangerouslySetInnerHTML={{ __html: content }}
+      ></div>
     </section>
   );
 }

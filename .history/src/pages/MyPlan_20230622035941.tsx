@@ -20,7 +20,7 @@ export default function MyPlan() {
   });
 
   const handleDelete = (id: string) => {
-    const updated = mytrip.filter((item: any) => item._id !== id);
+    const updated = mytrip.filter((item: any) => item.id !== id);
 
     setMyTrip(updated);
     console.log(mytrip);

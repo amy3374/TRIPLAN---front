@@ -11,20 +11,13 @@ export type MyPlanProps = {
 };
 export default function MyPlan() {
   const [mytrip, setMyTrip] = useState<any>();
-
+  const dispatch = useDispatch();
   // const myPlanList = useSelector((state: any) => {
   //   return state.MyPlanReducer.myPlanList;
   // });
   const user = useSelector((state: any) => {
     return state.User;
   });
-
-  const handleDelete = (id: string) => {
-    const updated = mytrip.filter((item: any) => item._id !== id);
-
-    setMyTrip(updated);
-    console.log(mytrip);
-  };
   useEffect(() => {
     console.log(1);
 
@@ -38,7 +31,7 @@ export default function MyPlan() {
   //   mytrip && dispatch({ type: "INIT_MP", payload: mytrip });
   // }, [mytrip]);
 
-  //console.log(myPlanList);
+  console.log(myPlanList);
 
   return (
     <div>
@@ -57,7 +50,6 @@ export default function MyPlan() {
               mytrip &&
               mytrip.map((item: any) => (
                 <MyPlanList
-                  onDelete={handleDelete}
                   key={item._id}
                   des={item.des}
                   username={user.username}

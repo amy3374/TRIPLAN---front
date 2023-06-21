@@ -88,7 +88,7 @@ export default function MyPlanDetail() {
       </div>
       <button
         onClick={planEdit}
-        className="bg-pink p-2 text-black font-bold rounded-lg m-2 w-14 self-end"
+        className="bg-pink p-2 text-black text-bold rounded-lg m-2 w-14 self-end"
       >
         수정
       </button>

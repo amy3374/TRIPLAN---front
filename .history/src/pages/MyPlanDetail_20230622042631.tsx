@@ -88,7 +88,7 @@ export default function MyPlanDetail() {
       </div>
       <button
         onClick={planEdit}
-        className="bg-pink p-2 text-black font-bold rounded-lg m-2 w-14 self-end"
+        className="bg-green p-2 text-white rounded-lg m-2 w-14 self-end"
       >
         수정
       </button>
@@ -96,9 +96,9 @@ export default function MyPlanDetail() {
 
       <button
         onClick={handleClick}
-        className="bg-green p-2  text-white rounded-lg m-2 min-w-fit self-end"
+        className="bg-green p-2  text-white rounded-lg m-2 min-w-fit w-16 self-end"
       >
-        {review ? "후기 수정" : "후기 작성"}
+        {review ? "수정" : "후기 작성"}
       </button>
     </section>
   );
