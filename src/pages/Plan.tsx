@@ -62,7 +62,7 @@ export default function Plan() {
       </div>
       <button
         onClick={handleClick}
-        className="bg-green p-2 text-white rounded-lg m-2 w-14 self-end"
+        className="bg-ligntgreen mt-0 border-2 border-green p-2 h-12 w-14 rounded-xl text-white font-bold self-end"
       >
         저장
       </button>

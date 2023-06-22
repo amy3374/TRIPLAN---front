@@ -67,7 +67,7 @@ export default function MyPlanDetail() {
   }
   
   useEffect(() => {
-    id && getPlanDetail(user.username,id).then((res) =>{dispatch({type:"INIT_P",payload:res.data.planDetail.plan}); dispatch({type:"INIT_B",payload:res.data.planDtail.baggageList})} );
+    id && getPlanDetail(user.username,id).then((res) =>{dispatch({type:"INIT_P",payload:res.data.planDetail.plan}); dispatch({type:"INIT_B",payload:res.data.planDetail.baggageList})} );
     id &&
     getPlanDetail(user.username, id).then((res) =>
       setMyTripDetail(res.data.planDetail)
@@ -97,13 +97,13 @@ const planinfo = {des : myTripDetail?.des ,schedule :myTripDetail?.schedule }
       {review && <Review content={review} />}
       <button
       onClick={handleClick}
-        className="bg-green p-2 text-white rounded-lg m-2 w-14 self-end"
+        className="bg-ligntgreen p-2 text-white rounded-lg m-2 w-14 self-end"
       >
         후기
       </button>
       <button
       onClick={planEdit}
-        className="bg-green p-2 text-white rounded-lg m-2 w-14 self-end"
+        className="bg-ligntgreen p-2 text-white rounded-lg m-2 w-14 self-end"
       >
         수정
       </button>
