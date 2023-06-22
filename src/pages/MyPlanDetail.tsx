@@ -20,21 +20,20 @@ export type PlanData = {
 };
 
 export type MyPlanDetailProps = {
-  des:string
-  schedule:string
+  des: string;
+  schedule: string;
   // id:string
-  username:string
-  baggageList:[]
-  plan:PlanData
- };
- 
- 
+  username: string;
+  baggageList: [];
+  plan: PlanData;
+};
+
 export default function MyPlanDetail() {
   const [myTripDetail, setMyTripDetail] = useState<MyPlanDetailProps>();
   // const list = myTripDetail?.baggageList
-  const dispatch=useDispatch()
+  const dispatch = useDispatch();
   const navigate = useNavigate();
-  const {id}=useParams()
+  const { id } = useParams();
   const [review, setReview] = useState<string>();
   const handleClick = () => {
     navigate(`/reviewEdit/${id}`, { state: { review } });
@@ -45,68 +44,58 @@ export default function MyPlanDetail() {
   const plan = useSelector((state: any) => {
     return state.PlanList.planList;
   });
-  
+
   const list = useSelector((state: any) => {
     return state.BaggageList.baggageList;
   });
 
-  
-  console.log("plan",plan);
-
-
-  const planEdit=()=>{
+  const planEdit = () => {
     edit(
       user.username,
       id,
       plan,
       myTripDetail?.baggageList,
       myTripDetail?.des as string,
-      myTripDetail?.schedule as string,
+      myTripDetail?.schedule as string
     );
-    console.log("edit",id)
-  }
-  
+  };
+
   useEffect(() => {
     id && getPlanDetail(user.username,id).then((res) =>{dispatch({type:"INIT_P",payload:res.data.planDetail.plan}); dispatch({type:"INIT_B",payload:res.data.planDetail.baggageList})} );
     id &&
-    getPlanDetail(user.username, id).then((res) =>
-      setMyTripDetail(res.data.planDetail)
-    );
-  id &&
-    getReview(id).then((res) => {
-      res.review !== null && setReview(res.review.content);
-    });
-  
+      getPlanDetail(user.username, id).then((res) =>
+        setMyTripDetail(res.data.planDetail)
+      );
+    id &&
+      getReview(id).then((res) => {
+        res.review !== null && setReview(res.review.content);
+      });
   }, [id]);
-console.log(myTripDetail);
+  console.log(myTripDetail);
 
-const planinfo = {des : myTripDetail?.des ,schedule :myTripDetail?.schedule }
+  const planinfo = { des: myTripDetail?.des, schedule: myTripDetail?.schedule };
 
   return (
     <section className="flex flex-col">
       <div className=" grid grid-cols-[1.5fr,1fr] gap-2 m-2 py-5 ">
-        {
-          <PlanBox
-            content={plan as PlanData}
-            planInfo={planinfo}
-          />
-        }
+        {<PlanBox content={plan as PlanData} planInfo={planinfo} />}
 
         <BaggageBox list={list as ListItem[]} />
       </div>
-      {review && <Review content={review} />}
-      <button
-      onClick={handleClick}
-        className="bg-ligntgreen p-2 text-white rounded-lg m-2 w-14 self-end"
-      >
-        후기
-      </button>
       <button
       onClick={planEdit}
         className="bg-ligntgreen p-2 text-white rounded-lg m-2 w-14 self-end"
       >
         수정
       </button>
-  </section>
-  )
+      {review && <Review content={review} />}
+
+      <button
+      onClick={handleClick}
+        className="bg-stone-500 p-2 text-white rounded-lg m-2 w-min-content self-end"
+      >
+        {review ? "후기 수정" : "후기 작성"}
+      </button>
+    </section>
+  );
 }

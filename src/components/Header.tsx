@@ -66,7 +66,6 @@ export default function Header() {
             onClick={logout}
           >로그아웃
           </button>
-          
         </div>
       ) : (
         <button
