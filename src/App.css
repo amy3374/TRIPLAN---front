@@ -1,3 +1,19 @@
+.side-baggage {
+    height: auto;
+    width: auto;
+    position: fixed;
+    border-radius: 10px;
+    z-index: 1;
+    overflow-x: hidden;
+    background-color: white;
+    top: 0;
+    right: 0;
+    transition: 0.5s;
+    padding-top: 60px;
+    z-index: 2;
+    
+}
+
 .side-menu {
     height: 100%;
     width: 250px;
@@ -54,28 +70,37 @@
     display: flex;
     visibility: visible;
 }
+.logout{
+    display: flex;
+    visibility: visible;
+}
 .logout button:hover{
     background-color: #82A284;
     color: white;
     font-weight: bold;
 }
 .login button:hover{
-    background-color: #82A284;
+    background-color: lightpink;
     color: white;
     font-weight: bold;
 }
 
 
-@media screen and (max-width:63rem) {
-    .hide {
-        display: block;
-    }
+@media screen and (max-width:57rem) {
     .logout {
         visibility: hidden;
     }
-
+    .login {
+        visibility: hidden;
+    }
+    .hide {
+        display: block;
+    }
+    .baggage-box {
+        display: none;
+    }
     .search-area {
         display: none;
     }
-    
+
 }

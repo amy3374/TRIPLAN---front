@@ -99,12 +99,12 @@ export default function Header() {
           </div>
         </div>
       ) : (
-        <div className="login flex justify-between">
+        <div className="flex justify-between">
           <div className="burger-menu hide">
             <FontAwesomeIcon icon={faBars} onClick={() => setWidth(250)} />
           </div>
           <button
-          className="bg-white border-2 border-pink p-3 h-12 rounded-xl text-pink font-bold"
+          className="login bg-white border-2 border-pink p-3 h-12 rounded-xl text-pink font-bold"
           onClick={goToLogin}
             >
             로그인

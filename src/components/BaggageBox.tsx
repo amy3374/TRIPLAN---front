@@ -1,30 +1,57 @@
 import BaggageItem from "./BaggageItem";
 import Input from "./Input";
 import { ListItem } from "../pages/Plan";
+import { useState } from "react";
 
 interface Boxprops {
   list: ListItem[];
 }
 
 export default function BaggageBox({ list }: Boxprops) {
+  const [baggageWidth, setBaggageWidth] = useState(0);
   return (
-    <ul className="flex flex-col ">
-      <div className="sticky top-0 ">
-        <div className=" bg-ligntgreen rounded-lg p-2 text-md font-bold text-center  ">
-          준비물
-        </div>
-        <div className=" border p-3 mt-3 border-stone-300 rounded-lg ">
-          <Input color="green" component="Baggage" />
-          {list && list.length == 0 ? (
-            <div className="text-4xl font-bold text-stone-300 text-center p-5">
-              <h1 className="p-2">준비물을</h1>
-              <h1 className="p-2">추가해보세요!</h1>
-            </div>
-          ) : (
-            list && list.map((item) => <BaggageItem {...item} key={item.id} />)
-          )}
-        </div>
+    <ul className="flex flex-col">
+      <div className="side-baggage" style={{ width: baggageWidth}}>
+        <button
+            className="close-btn"
+            onClick={() => {
+              setBaggageWidth(0);
+            }}
+          >
+            ❌
+          </button>
+          <div className=" bg-ligntgreen rounded-lg p-2 text-md font-bold text-center  ">
+            준비물
+          </div>
+          <div className=" border p-3 mt-3 border-stone-300 rounded-lg ">
+            <Input color="green" component="Baggage" />
+            {list && list.length == 0 ? (
+              <div className="text-4xl font-bold text-stone-300 text-center p-5">
+                <h1 className="p-2">준비물을</h1>
+                <h1 className="p-2">추가해보세요!</h1>
+              </div>
+            ) : (
+              list && list.map((item) => <BaggageItem {...item} key={item.id} />)
+            )}
+          </div>
       </div>
+      <div className="sticky top-0 baggage-box">
+          <div className=" bg-ligntgreen rounded-lg p-2 text-md font-bold text-center  ">
+            준비물
+          </div>
+          <div className=" border p-3 mt-3 border-stone-300 rounded-lg ">
+            <Input color="green" component="Baggage" />
+            {list && list.length == 0 ? (
+              <div className="text-4xl font-bold text-stone-300 text-center p-5">
+                <h1 className="p-2">준비물을</h1>
+                <h1 className="p-2">추가해보세요!</h1>
+              </div>
+            ) : (
+              list && list.map((item) => <BaggageItem {...item} key={item.id} />)
+            )}
+          </div>
+      </div>
+      <button className="hide" onClick={() => setBaggageWidth(200)}>→</button>
     </ul>
   );
 }

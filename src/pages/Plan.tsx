@@ -50,7 +50,7 @@ export default function Plan() {
 
   return (
     <section className="flex flex-col">
-      <div className=" grid grid-cols-[1.5fr,1fr] gap-2 m-2 py-5 ">
+      <div className="grid grid-cols-[auto,auto] gap-2 m-2 py-5 plan-grid">
         {
           <PlanBox
             content={plan as PlanData}
