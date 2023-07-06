@@ -54,14 +54,18 @@ export default function MyPlanDetail() {
       user.username,
       id,
       plan,
-      myTripDetail?.baggageList,
+      list,
       myTripDetail?.des as string,
       myTripDetail?.schedule as string
-    );
+    ).then(() => alert("수정이 완료되었습니다."));
   };
 
   useEffect(() => {
-    id && getPlanDetail(user.username,id).then((res) =>{dispatch({type:"INIT_P",payload:res.data.planDetail.plan}); dispatch({type:"INIT_B",payload:res.data.planDetail.baggageList})} );
+    id &&
+      getPlanDetail(user.username, id).then((res) => {
+        dispatch({ type: "INIT_P", payload: res.data.planDetail.plan });
+        dispatch({ type: "INIT_B", payload: res.data.planDetail.baggageList });
+      });
     id &&
       getPlanDetail(user.username, id).then((res) =>
         setMyTripDetail(res.data.planDetail)
@@ -71,7 +75,6 @@ export default function MyPlanDetail() {
         res.review !== null && setReview(res.review.content);
       });
   }, [id]);
-  console.log(myTripDetail);
 
   const planinfo = { des: myTripDetail?.des, schedule: myTripDetail?.schedule };
 
@@ -83,7 +86,7 @@ export default function MyPlanDetail() {
         <BaggageBox list={list as ListItem[]} />
       </div>
       <button
-      onClick={planEdit}
+        onClick={planEdit}
         className="bg-ligntgreen p-2 text-white rounded-lg m-2 w-14 self-end"
       >
         수정
@@ -91,7 +94,7 @@ export default function MyPlanDetail() {
       {review && <Review content={review} />}
 
       <button
-      onClick={handleClick}
+        onClick={handleClick}
         className="bg-stone-500 p-2 text-white rounded-lg m-2 w-min-content self-end"
       >
         {review ? "후기 수정" : "후기 작성"}

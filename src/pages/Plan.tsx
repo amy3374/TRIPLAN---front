@@ -33,7 +33,7 @@ export default function Plan() {
   console.log(plan);
 
   const handleClick = () => {
-    console.log(1);
+    user.isLogin?
 
     save(
       user.username,
@@ -41,11 +41,13 @@ export default function Plan() {
       location.state.planInfo.schedule,
       plan,
       list
-    );
+    ).then(()=> alert("저장되었습니다."))
+    :alert("로그인 후 시도해주세요.")
   };
   useEffect(() => {
     // console.log(JSON.parse(location.state.res));
     dispatch({ type: "INIT_P", payload: location.state.res });
+    dispatch({ type: "INIT_B", payload:[] });
   }, []);
 
   return (

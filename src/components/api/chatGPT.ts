@@ -36,8 +36,9 @@ export async function getPlan(des?: string, schedule?: string) {
     return contentObj;
   } catch (res_1) {
     const contentObj = toObject(
-      "DAY 1: -속초해수ㅛㄱ당 -ㅇㄹㄴㄹ -ㅇㄴㄹㄴㅇㄹㄴㅇ DAY 2: -SDSDFDSF -SDFSDFSD -SDFDSF"
+      "DAY 1: -속초 해수욕장 -대포항에서 회 먹기 -청초호 산책 DAY 2: -속초 냉면먹기 -영랑호 산책 -영랑호 포차거리"
     );
+    alert("chat GPT key가 만료되어 test_content(속초 1박 2일)가 전달되었습니다. ")
     return contentObj;
   }
 }

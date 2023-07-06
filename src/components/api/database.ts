@@ -22,7 +22,9 @@ export async function save(
       schedule,
       baggageList,
     }),
+    
   });
+  return res;
 }
 
 export function getSave(username: string) {
@@ -57,6 +59,8 @@ export async function saveReview(id: string, content: string) {
       content,
     }),
   });
+
+  return res;
 }
 
 export async function getReview(id: string) {
@@ -73,14 +77,14 @@ export async function getReview(id: string) {
 
 export async function edit(
   username: string,
-  id:any,
+  id: any,
   plan: any,
   baggageList: any,
   des: string,
-  schedule: string,
+  schedule: string
 ) {
   console.log(5);
-  console.log("database id",id);
+  console.log("database id", id);
 
   const res = await axios({
     url: `http://localhost:8000/saveEdit/${username}/${id}`,
@@ -95,16 +99,14 @@ export async function edit(
       baggageList,
       des,
       schedule,
-  }),
+    }),
   });
-  console.log(res);
+
+  return res;
 }
-export async function deleteMyPlan(
-  id:string,
-  username:string,
-) {
+export async function deleteMyPlan(id: string, username: string) {
   console.log(6);
-  console.log("database id",id);
+  console.log("database id", id);
 
   const res = await axios({
     url: `http://localhost:8000/deletePlan/${username}/${id}`,
@@ -113,8 +115,6 @@ export async function deleteMyPlan(
     headers: {
       "Content-Type": "application/json",
     },
-
   });
-  console.log(res);
+  return res;
 }
-

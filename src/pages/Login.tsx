@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { login } from "../components/api/Auth";
+import { useSelector } from "react-redux";
 
 export type LoginData = {
   username?: string;
@@ -12,6 +13,7 @@ const Login = () => {
   const dispatch = useDispatch();
   const [loginInput, setLoginInput] = useState<LoginData>();
   const navigate = useNavigate();
+
   const loginChange = (e: any) => {
     const { name, value } = e.target;
     setLoginInput((pre) => ({ ...pre, [name]: value }));
@@ -19,18 +21,20 @@ const Login = () => {
   const loginCheck = (e: any) => {
     login(loginInput?.username as string, loginInput?.password as string).then(
       (res) =>
-        res &&
+       {res &&
         dispatch({
           type: "LOGIN",
           payload: {
-            _id: res._id,
-            name: res.name,
-            username: res.username,
+            _id: JSON.parse(res.value)._id,
+            name: JSON.parse(res.value).name,
+            username: JSON.parse(res.value).username,
           },
         })
-    );
+        alert("로그인 되었습니다");
+        return navigate(-1);} 
+    ).catch( ()=>alert("로그인 실패"));
 
-    return navigate(-1);
+   
   };
   const goJoin = () => {
     navigate("/join");
